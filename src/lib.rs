@@ -54,36 +54,33 @@ fn kdbg_eventid(class: u32, subclass: u32, code: u32) -> u32 {
 #[cfg(target_os = "macos")]
 pub fn start(code: u32, args: &[usize; 4]) {
     unsafe {
-        kdebug_trace(appsdbg_code(DBG_MACH_CHUD, code) | DBG_FUNC_START,
+        kdebug_signpost(appsdbg_code(DBG_MACH_CHUD, code) | DBG_FUNC_START,
                      args[0],
                      args[1],
                      args[2],
-                     args[3],
-                     0)
+                     args[3])
     }
 }
 
 #[cfg(target_os = "macos")]
 pub fn end(code: u32, args: &[usize; 4]) {
     unsafe {
-        kdebug_trace(appsdbg_code(DBG_MACH_CHUD, code) | DBG_FUNC_END,
+        kdebug_signpost(appsdbg_code(DBG_MACH_CHUD, code) | DBG_FUNC_END,
                      args[0],
                      args[1],
                      args[2],
-                     args[3],
-                     0)
+                     args[3])
     }
 }
 
 #[cfg(target_os = "macos")]
 pub fn trace(code: u32, args: &[usize; 4]) {
     unsafe {
-        kdebug_trace(appsdbg_code(DBG_MACH_CHUD, code) | DBG_FUNC_NONE,
+        kdebug_signpost(appsdbg_code(DBG_MACH_CHUD, code) | DBG_FUNC_NONE,
                      args[0],
                      args[1],
                      args[2],
-                     args[3],
-                     0)
+                     args[3])
     }
 }
 
@@ -126,5 +123,5 @@ impl<'a> Drop for AutoTrace<'a> {
 
 #[cfg(target_os = "macos")]
 extern {
-    fn kdebug_trace(code: u32, arg0: usize, arg1: usize, arg2: usize, arg3: usize, arg4: usize);
+    fn kdebug_signpost(code: u32, arg0: usize, arg1: usize, arg2: usize, arg3: usize);
 }
