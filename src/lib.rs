@@ -1,5 +1,5 @@
 // signpost/src/lib.rs
-
+/*
 #[cfg(target_os = "macos")]
 const DBG_APPS: u32 = 33;
 #[cfg(target_os = "macos")]
@@ -16,7 +16,7 @@ const KDBG_CLASS_OFFSET: u32 = 24;
 const KDBG_SUBCLASS_OFFSET: u32 = 16;
 #[cfg(target_os = "macos")]
 const KDBG_CODE_OFFSET: u32 = 2;
-
+*/
 /// When passed as the last argument to a trace, and when "color using last
 /// argument" is checked in Instruments' "Points of Interest" options sidebar,
 /// controls the color a trace is rendered with.
@@ -34,7 +34,7 @@ pub enum Color {
     Orange = 3,
     Red = 4,
 }
-
+/*
 #[cfg(target_os = "macos")]
 fn appsdbg_code(subclass: u32, code: u32) -> u32 {
     kdbg_code(DBG_APPS, subclass, code)
@@ -50,7 +50,7 @@ fn kdbg_eventid(class: u32, subclass: u32, code: u32) -> u32 {
     ((class & 0xff) << KDBG_CLASS_OFFSET) | ((subclass & 0xff) << KDBG_SUBCLASS_OFFSET) |
         ((code & 0x3fff) << KDBG_CODE_OFFSET)
 }
-
+*/
 #[cfg(target_os = "macos")]
 pub fn start(code: u32, args: &[usize; 4]) {
     unsafe {
@@ -76,7 +76,7 @@ pub fn end(code: u32, args: &[usize; 4]) {
 #[cfg(target_os = "macos")]
 pub fn trace(code: u32, args: &[usize; 4]) {
     unsafe {
-        kdebug_signpost(appsdbg_code(DBG_MACH_CHUD, code) | DBG_FUNC_NONE,
+        kdebug_signpost(code,
                      args[0],
                      args[1],
                      args[2],
