@@ -4,6 +4,6 @@ version = "0.1.0"
 authors = ["Patrick Walton <pcwalton@mimiga.net>"]
 description = "Rust interface to the OS native signpost debug facilities"
 license = "MIT / Apache-2.0"
-repository = "https://github.com/pcwalton/signpost"
+repository = "https://github.com/rzambre/signpost"
 
 [dependencies]
